@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+
 
 @Component({
   selector: 'app-login',
@@ -7,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+      console.log("hola estoy en login");   
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+      console.log('estoy en init login');  
+  }
+
+  openMenu() {
+    console.log('estoyen open menu');
+  }
+
+
+
+  
 
 }

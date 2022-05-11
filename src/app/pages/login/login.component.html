@@ -9,14 +9,31 @@
 <ion-content>
 
     <ion-item>
-        <ion-label>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, error! Veritatis voluptatum provident, quis deserunt tempore voluptatem et facere, ad dolorum reiciendis excepturi sed doloremque voluptate explicabo minima nesciunt atque!</p>
-        </ion-label>
+        <ion-label position="stacked">Correo</ion-label>
+        <ion-input pattern=""  [(ngModel)]="correo"></ion-input>
     </ion-item>
 
-    <ion-button (click)="openMenu()" expand="full"color="dark" shape="round">
-        Carrito
+    <ion-item>
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input type="password" minlength="6" [(ngModel)]="password"></ion-input>
+    </ion-item>
+
+    <ion-button (click)="login()" expand="block"  shape="round">
+      Login
     </ion-button>
+
+    <ion-item>
+        <ion-label>¿No tienes un usuario?</ion-label>
+        <ion-buttons slot="end">
+            <ion-button [routerLink]="['/registro']" >
+            Resgístrate
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+
+    
+    
+
 
 
 </ion-content>

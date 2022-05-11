@@ -11,6 +11,11 @@ import { MenuComponent } from './componentes/menu/menu.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +23,18 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     MenuComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegistroComponent
   ],
   entryComponents: [],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

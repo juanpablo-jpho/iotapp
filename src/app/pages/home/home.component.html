@@ -9,80 +9,12 @@
 
 <ion-content>
 
-  <ion-button (click)="selecNivel1()">
-   Nivel 1
-  </ion-button>
+    <ion-item>
+      <ion-label>Bienvenido
+      <p>{{correo}}</p>
 
-  <ion-button (click)="selecNivel2()">
-    Nivel 2
-   </ion-button>
-
-    <ion-button (click)="addNuevoEnable()" expand="full">
-      <ion-label>Crear nuevo</ion-label>
-      <ion-icon slot="end" name="person-add-sharp"></ion-icon>
-    </ion-button>
-
-    <div *ngIf="addNuevo == true">
-      <ion-item>
-        <ion-label>Nombre</ion-label>
-        <ion-input [(ngModel)]="newEmpleado.nombre"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Telefono</ion-label>
-        <ion-input [(ngModel)]="newEmpleado.telefono"></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>Cargo</ion-label>
-        <ion-input [(ngModel)]="newEmpleado.cargo"></ion-input>
-      </ion-item>
-  
-      
-      <ion-item>
-        <ion-label>Nivel</ion-label>
-        <ion-input type="number" [(ngModel)]="newEmpleado.nivel"></ion-input>
-      </ion-item>
-
-      <ion-button (click)="cancelar()">
-        Cancelar
-      </ion-button>
-
-      <ion-button (click)="guardar()">
-       Guardar
-      </ion-button>
-    </div>
-
-
-
-  <ion-list>
-    <ion-list-header>
-      <ion-label>Empleado</ion-label>
-    </ion-list-header>
-
-    <div *ngFor="let empleado of empleados; let i = index">
-      <ion-item *ngIf="empleado.nivel == nivel">
-        <ion-label>{{i}}.- Empleado: {{empleado.nombre}}
-          <p>Telefono: {{empleado.telefono}}</p>
-          <p>Cargo: {{empleado.cargo}}</p>
-          <p>Nivel: {{empleado.nivel}}</p>
-        </ion-label>
-        <ion-buttons slot="end">
-          <ion-button (click)="editar(empleado)">
-            <ion-icon slot="icon-only" name="create"></ion-icon>
-          </ion-button>
-          <ion-button (click)="eliminar(i)">
-            <ion-icon slot="icon-only"color="danger" name="trash-bin"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-item>
-    </div>
-
-    
-  
-
-  </ion-list>
-
+      </ion-label>
+    </ion-item>
 
 
 

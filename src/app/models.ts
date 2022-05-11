@@ -4,3 +4,11 @@ export interface EmpleadoI {
     cargo: string;
     nivel: number;
 }
+
+export interface UserInfoI {
+    correo:string;
+    password:string;
+    nombre:string;
+    telefono:string;
+    uid:string
+} 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoI } from 'src/app/models';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -28,11 +29,20 @@ export class HomeComponent implements OnInit {
 
   editarEnable: boolean = false;
 
-  constructor() { 
+  correo:string;
+
+  constructor(private  authenticationService:  AuthenticationService) { 
     this.loadEmpleados();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+        this.authenticationService.authstate().subscribe( res => {
+              console.log('res ->', res);
+              if (res) {
+                  this.correo = res.email
+              }
+        });
+  }
 
   loadEmpleados() {
       this.empleados = [

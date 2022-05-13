@@ -16,7 +16,8 @@ export class RegistroComponent implements OnInit {
     password:null,
     nombre:null,
     telefono:null,
-    uid:null
+    uid:null,
+    rol: 'empresa'
   };
 
   repassword:string = null;

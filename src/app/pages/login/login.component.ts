@@ -10,7 +10,7 @@ import { AuthenticationService } from "src/app/services/authentication.service";
 })
 export class LoginComponent implements OnInit {
 
-  correo:string;
+  correo:number;
   password:string;
 
   constructor(private  authenticationService: AuthenticationService,
@@ -27,13 +27,15 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    const respuesta =  await this.authenticationService.login(this.correo,this.password);
-    console.log('esta es la respuesta ->', respuesta);
-    if (respuesta) {
-        this.router.navigate(['/'])
-    }
+    // const respuesta =  await this.authenticationService.login(this.correo,this.password);
+    // console.log('esta es la respuesta ->', respuesta);
+    // if (respuesta) {
+    //     this.router.navigate(['/'])
+    // }
     
   }
+
+
 
 
 

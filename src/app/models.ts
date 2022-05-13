@@ -10,5 +10,6 @@ export interface UserInfoI {
     password:string;
     nombre:string;
     telefono:string;
-    uid:string
+    uid:string;
+    rol: 'empresa' | 'usuario';
 } 

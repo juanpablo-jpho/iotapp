@@ -22,4 +22,16 @@
     </ion-item>
 </ion-menu-toggle>
 
+<ion-menu-toggle *ngIf="rol == 'empresa'">
+  <ion-item [routerLink]="['/configuraciones']" >
+    <ion-label>Configuraciones</ion-label>
+  </ion-item>
+</ion-menu-toggle>
+
+<ion-menu-toggle *ngIf="isAdmin">
+  <ion-item [routerLink]="['/ajustes']" >
+    <ion-label>Ajustes</ion-label>
+  </ion-item>
+</ion-menu-toggle>
+
 </ion-list>

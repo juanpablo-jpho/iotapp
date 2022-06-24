@@ -185,7 +185,7 @@ export class HomeComponent implements OnInit {
   }
 
   getStatelED() {
-    const path = 'led-casa';
+    const path = 'state-led';
     this.realtimedbService.getObjet(path).subscribe( res => {
           this.estadoLed = res as any;
     })

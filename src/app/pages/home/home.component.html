@@ -17,5 +17,47 @@
     </ion-item>
 
 
+    <ion-item>
+      <ion-label>Numero 1</ion-label>
+      <ion-input [(ngModel)]="data.numero1" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Numero 2</ion-label>
+      <ion-input [(ngModel)]="data.numero2" type="number"></ion-input>
+    </ion-item>
+
+    <ion-button (click)="getsuma()" expand="block" >
+      Sumar servidor
+    </ion-button>
+
+    <ion-button (click)="getsumaCliente()" expand="block" >
+      Sumar cliente
+    </ion-button>
+
+    <ng-container *ngIf="respuesta">
+         <ion-item>
+           <ion-label>La suma es: {{respuesta.respuesta}}
+             <p>estado: {{respuesta.estado}}</p>
+           </ion-label>
+         </ion-item>
+    </ng-container>
+
+
+    <ion-button (click)="guardarLed()">
+      prender led
+    </ion-button>
+
+
+    <ion-button (click)="apagarLed()">
+      apagar led
+    </ion-button>
+
+
+    <ion-item>
+      <ion-label>{{estadoLed}}</ion-label>
+    </ion-item>
+
+
 
 </ion-content>

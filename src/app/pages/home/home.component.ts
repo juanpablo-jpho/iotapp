@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpleadoI } from 'src/app/models';
+import { EmpleadoI, RequestApiSumaI, ResponseApiSumaI } from 'src/app/models';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RealtimedbService } from '../../services/realtimedb.service';
+
 
 @Component({
   selector: 'app-home',
@@ -20,7 +23,7 @@ export class HomeComponent implements OnInit {
   nivel: number = 0;
   addNuevo: boolean = false;
 
-  newEmpleado: EmpleadoI =           {
+  newEmpleado: EmpleadoI = {
     nombre:'',
     telefono: '',
     cargo:'',
@@ -31,8 +34,21 @@ export class HomeComponent implements OnInit {
 
   correo:string;
 
-  constructor(private  authenticationService:  AuthenticationService) { 
+  respuesta: ResponseApiSumaI;
+  data: RequestApiSumaI = {
+    numero1: null,
+    numero2: null,
+  }
+
+  estadoLed: boolean = false
+
+  version = 0;
+
+  constructor(private  authenticationService:  AuthenticationService,
+            private realtimedbService: RealtimedbService,
+              private http: HttpClient,) { 
     this.loadEmpleados();
+    this.getStatelED();
   }
 
   ngOnInit() {
@@ -123,4 +139,58 @@ export class HomeComponent implements OnInit {
         this.empleados.splice(i);
   }
 
+
+  getsuma() {
+      const url = 'http://localhost:5001/iot-arduinoapp/us-central1/suma2numeros';
+      const httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+        })
+      };
+      return this.http.post<ResponseApiSumaI>(url, this.data, httpOptions).subscribe( res => {
+          console.log('recibo respuesta del servidor ->', res);
+          this.respuesta = res;
+          return;
+      }) 
+
+  }
+
+  getsumaCliente() {
+      const data = this.data;
+      this.respuesta = {
+        respuesta: data.numero1 + data.numero2,
+        numeroMayor: data.numero1 <= data.numero2 ? data.numero2 : data.numero1,
+        numeroMenor: data.numero1 < data.numero2 ? data.numero1 : data.numero2,
+        estado: 'success'    
+      }
+  }
+
+
+  async guardarLed() {
+    let path = 'led';
+    await this.realtimedbService.createObjet(path, true);
+    this.version = this.version + 1;
+    path = 'version';
+      this.realtimedbService.createObjet(path,this.version);
+     
+  }
+
+  async apagarLed() {
+    let path = 'led';
+    await this.realtimedbService.createObjet(path, false);
+    this.version = this.version + 1;
+    path = 'version';
+      this.realtimedbService.createObjet(path,this.version);
+   
+  }
+
+  getStatelED() {
+    const path = 'led-casa';
+    this.realtimedbService.getObjet(path).subscribe( res => {
+          this.estadoLed = res as any;
+    })
+  }
+
 }
+
+

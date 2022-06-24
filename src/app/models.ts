@@ -13,3 +13,16 @@ export interface UserInfoI {
     uid:string;
     rol: 'empresa' | 'usuario';
 } 
+
+
+export interface ResponseApiSumaI {
+  respuesta: number;
+  numeroMayor: number;
+  numeroMenor: number;
+  estado: string;
+}
+
+export interface RequestApiSumaI {
+    numero1: number;
+    numero2: number;
+}
